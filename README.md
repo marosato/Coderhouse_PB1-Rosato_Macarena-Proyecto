@@ -3,7 +3,9 @@
 ## Información de la Cursada:
 
 **Alumna:** Rosato, Macarena Ayelén
+
 **Curso:** Programación Backend I: Desarrollo Avanzado de Backend
+
 **Comisión:** 77580
 
 ---
