@@ -31,5 +31,18 @@
     "stock": 50,
     "category": "perifericos",
     "thumbnails": []
+  },
+  {
+    "id": 4,
+    "title": "Monitor",
+    "description": "Monitor Samsung",
+    "code": "MN001",
+    "price": 300,
+    "status": true,
+    "stock": 20,
+    "category": "tecnologia",
+    "thumbnails": [
+      "monitor.jpg"
+    ]
   }
 ]
