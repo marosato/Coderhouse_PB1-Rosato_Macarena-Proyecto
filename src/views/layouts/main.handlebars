@@ -3,9 +3,147 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coderhouse Backend</title>
+  <title>eCommerce Backend</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #111827;
+      color: white;
+      padding: 18px 30px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #111827;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    .badge {
+      display: inline-block;
+      background-color: #e5e7eb;
+      color: #111827;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 15px;
+      background-color: #fafafa;
+    }
+
+    .actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .pagination {
+      margin-top: 25px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .empty {
+      padding: 16px;
+      background-color: #f9fafb;
+      border: 1px dashed #d1d5db;
+      border-radius: 8px;
+    }
+
+    form.inline {
+      display: inline;
+    }
+
+    .info {
+      color: #374151;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
-  {{{body}}}
+  <header>🛒 eCommerce Backend</header>
+
+  <div class="container">
+    <div class="nav">
+      <a href="/products">Productos</a>
+      {{#if cartId}}
+        <a href="/carts/{{cartId}}">Ver carrito</a>
+      {{/if}}
+    </div>
+
+    {{{body}}}
+  </div>
 </body>
 </html>
