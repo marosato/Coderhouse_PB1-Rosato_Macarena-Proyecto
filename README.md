@@ -41,23 +41,23 @@ Además, se incorporan vistas dinámicas con Handlebars que permiten al usuario 
 
 1. Clonar el repositorio:
 
-git clone https://github.com/marosato/Coderhouse_PB1-Rosato_Macarena-Proyecto.git
+- git clone https://github.com/marosato/Coderhouse_PB1-Rosato_Macarena-Proyecto.git
 
 2. Acceder al proyecto:
 
-cd Coderhouse_PB1-Rosato_Macarena-Proyecto
+- cd Coderhouse_PB1-Rosato_Macarena-Proyecto
 
 3. Instalar dependencias:
 
-npm install
+- npm install
 
 4. Ejecutar el servidor:
 
-npm start
+- npm start
 
 5. Abrir en el navegador:
 
-http://localhost:8080/products
+- http://localhost:8080/products
 
 ---
 
