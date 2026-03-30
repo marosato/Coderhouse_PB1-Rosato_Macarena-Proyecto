@@ -1,4 +1,4 @@
-# Programación Backend I – Entrega N°2
+# Programación Backend I – Entrega Final
 
 ## Información de la Cursada:
 
@@ -12,364 +12,156 @@
 
 # Descripción del Proyecto
 
-Este proyecto corresponde a la **Entrega N°2 del curso Programación Backend I** de Coderhouse.
-
-El objetivo del proyecto es desarrollar un **servidor backend con Node.js y Express** que permita:
-
-* gestionar productos mediante una **API REST**
-* gestionar carritos de compra
-* persistir información en archivos **JSON**
-* renderizar vistas utilizando **Handlebars**
-* actualizar productos **en tiempo real mediante WebSockets (Socket.io)**
-
-El sistema permite:
-
-✔ administrar productos
-✔ administrar carritos
-✔ visualizar productos en una página web
-✔ agregar o eliminar productos en tiempo real
+Este proyecto corresponde a la **Entrega Final del curso Programación Backend I** de Coderhouse.
 
 ---
 
-# Tecnologías Utilizadas
+📌 Descripción
 
-El proyecto fue desarrollado utilizando:
+Este proyecto consiste en el desarrollo de un backend de eCommerce utilizando Node.js, Express y MongoDB Atlas como sistema de persistencia principal.
 
-* Node.js
-* Express
-* Express Handlebars
-* Socket.io
-* JavaScript
-* WebSockets
-* Persistencia en archivos JSON
+La aplicación permite gestionar productos y carritos, implementando relaciones entre colecciones mediante ObjectId y resolviendo dichas relaciones con el método populate de Mongoose.
 
-Dependencias principales del proyecto:
-
-```
-express
-express-handlebars
-socket.io
-```
+Además, se incorporan vistas dinámicas con Handlebars que permiten al usuario navegar por los productos, visualizar detalles y gestionar un carrito de compras de forma intuitiva.
 
 ---
 
-# Estructura del Proyecto
+⚙️ Tecnologías utilizadas
 
-```
-src
-│
-├── app.js
-│
-├── data
-│   ├── products.json
-│   └── carts.json
-│
-├── managers
-│   ├── ProductManager.js
-│   └── CartManager.js
-│
-├── routes
-│   ├── products.router.js
-│   ├── carts.router.js
-│   └── views.router.js
-│
-├── views
-│   ├── home.handlebars
-│   ├── realTimeProducts.handlebars
-│   └── layouts
-│        └── main.handlebars
-│
-└── public
-    └── js
-        └── realTimeProducts.js
-```
+- Node.js
+- Express
+- MongoDB Atlas
+- Mongoose
+- Mongoose Paginate
+- Handlebars
 
 ---
 
-# Explicación General del Sistema
+🚀 Instalación y ejecución
 
-El sistema funciona en tres capas principales.
+1. Clonar el repositorio:
 
-## 1️⃣ API REST
-
-Permite administrar productos y carritos mediante endpoints HTTP.
-
-Ejemplos:
-
-```
-GET /api/products
-POST /api/products
-PUT /api/products/:id
-DELETE /api/products/:id
-```
-
----
-
-## 2️⃣ Renderizado de Vistas
-
-Se utilizan plantillas **Handlebars** para mostrar los productos en páginas web.
-
-Las vistas principales son:
-
-```
-/
-```
-
-Lista de productos.
-
-```
-/realtimeproducts
-```
-
-Gestión de productos en tiempo real.
-
----
-
-## 3️⃣ Comunicación en Tiempo Real
-
-Se utiliza **Socket.io** para actualizar la lista de productos automáticamente cuando se agregan o eliminan productos.
-
-Esto evita tener que recargar la página.
-
----
-
-# Persistencia de Datos
-
-Los datos se almacenan en archivos JSON.
-
-```
-src/data/products.json
-src/data/carts.json
-```
-
-Esto permite que la información permanezca guardada incluso después de reiniciar el servidor.
-
----
-
-# Instalación del Proyecto
-
-## 1️⃣ Clonar el repositorio
-
-Abrir una terminal y ejecutar:
-
-```
 git clone https://github.com/marosato/Coderhouse_PB1-Rosato_Macarena-Proyecto.git
-```
 
----
+2. Acceder al proyecto:
 
-## 2️⃣ Ingresar a la carpeta del proyecto
-
-```
 cd Coderhouse_PB1-Rosato_Macarena-Proyecto
-```
 
----
+3. Instalar dependencias:
 
-## 3️⃣ Instalar dependencias
-
-```
 npm install
-```
 
-Esto instalará todas las dependencias necesarias para ejecutar el proyecto.
+4. Ejecutar el servidor:
 
----
-
-## 4️⃣ Ejecutar el servidor
-
-```
 npm start
-```
 
-Si todo funciona correctamente, la terminal mostrará algo como:
+5. Abrir en el navegador:
 
-```
-Servidor corriendo en http://localhost:8080
-```
+http://localhost:8080/products
 
 ---
 
-# Cómo utilizar el sistema
+🧠 Funcionalidades principales
 
-Una vez iniciado el servidor, abrir el navegador web.
+📦 Productos
 
----
-
-# Página principal
-
-Abrir:
-
-```
-http://localhost:8080/
-```
-
-Esta página muestra la **lista de productos disponibles**.
-
-Ejemplo de lo que se verá:
-
-```
-ID: 1 | Notebook | $900 | Stock: 10
-ID: 2 | Mouse | $50 | Stock: 100
-ID: 3 | Teclado | $150 | Stock: 50
-```
-
-Esta página se actualiza **solo al recargar el navegador**.
+- Crear productos
+- Obtener productos con:
+  - paginación
+  - filtros por categoría o disponibilidad
+  - ordenamiento por precio (asc/desc)
+- Actualizar productos
+- Eliminar productos
 
 ---
 
-# Página de productos en tiempo real
+🛒 Carritos
 
-Abrir:
-
-```
-http://localhost:8080/realtimeproducts
-```
-
-Esta página permite **gestionar productos en tiempo real**.
-
-El sistema incluye dos formularios.
+- Crear carrito
+- Agregar productos al carrito
+- Eliminar productos del carrito
+- Actualizar cantidad de un producto
+- Reemplazar productos del carrito
+- Vaciar carrito completo
+- Visualizar carrito con populate
 
 ---
 
-# Agregar producto
+🌐 Vistas (Handlebars)
 
-El usuario debe completar el formulario con los siguientes datos:
+- "/products" → listado paginado de productos
+- "/products/:pid" → detalle del producto
+- "/carts/:cid" → vista del carrito
 
-| Campo       | Ejemplo                     |
-| ----------- | --------------------------- |
-| title       | Monitor                     |
-| description | Monitor Samsung 24 pulgadas |
-| code        | MN001                       |
-| price       | 300                         |
-| status      | true                        |
-| stock       | 20                          |
-| category    | tecnologia                  |
-| thumbnails  | monitor.jpg                 |
+Incluye:
 
-Ejemplo completo:
-
-```
-title: Monitor
-description: Monitor Samsung
-code: MN001
-price: 300
-status: true
-stock: 20
-category: tecnologia
-thumbnails: monitor.jpg
-```
-
-Luego presionar **Agregar producto**.
-
-El producto aparecerá automáticamente en la lista **sin recargar la página**.
+- navegación entre páginas
+- botón de agregar al carrito
+- experiencia de usuario mejorada
 
 ---
 
-# Eliminar producto
+🔗 Endpoints principales
 
-Para eliminar un producto:
+Productos
 
-1️⃣ escribir el **ID del producto**
-
-Ejemplo:
-
-```
-2
-```
-
-2️⃣ presionar **Eliminar producto**
-
-El producto desaparecerá automáticamente de la lista.
+- "GET /api/products"
+- "GET /api/products/:pid"
+- "POST /api/products"
+- "PUT /api/products/:pid"
+- "DELETE /api/products/:pid"
 
 ---
 
-# Ejemplo de flujo de uso
+Carritos
 
-1️⃣ abrir:
-
-```
-http://localhost:8080/realtimeproducts
-```
-
-2️⃣ agregar un producto:
-
-```
-title: Monitor
-description: Monitor Samsung
-code: MN001
-price: 300
-status: true
-stock: 20
-category: tecnologia
-thumbnails: monitor.jpg
-```
-
-3️⃣ el producto aparecerá inmediatamente en la lista
-
-4️⃣ eliminar un producto ingresando su ID
-
-```
-ID del producto: 2
-```
-
-5️⃣ la lista se actualizará automáticamente
+- "POST /api/carts"
+- "GET /api/carts/:cid"
+- "POST /api/carts/:cid/product/:pid"
+- "DELETE /api/carts/:cid/products/:pid"
+- "PUT /api/carts/:cid"
+- "PUT /api/carts/:cid/products/:pid"
+- "DELETE /api/carts/:cid"
 
 ---
 
-# API REST
+📊 Formato de respuesta (paginación)
 
-El sistema también permite administrar productos mediante la API.
-
-## Obtener productos
-
-```
-GET /api/products
-```
-
----
-
-## Obtener producto por ID
-
-```
-GET /api/products/1
-```
-
----
-
-## Crear producto
-
-```
-POST /api/products
-```
-
-Ejemplo de body JSON:
-
-```
 {
-"title": "Mouse",
-"description": "Mouse Logitech",
-"code": "MS001",
-"price": 50,
-"status": true,
-"stock": 100,
-"category": "perifericos",
-"thumbnails": []
+  "status": "success",
+  "payload": [],
+  "totalPages": 1,
+  "prevPage": null,
+  "nextPage": null,
+  "page": 1,
+  "hasPrevPage": false,
+  "hasNextPage": false,
+  "prevLink": null,
+  "nextLink": null
 }
-```
 
 ---
 
-## Actualizar producto
+🔍 Ejemplos de uso
 
-```
-PUT /api/products/1
-```
+Obtener productos
+
+GET http://localhost:8080/api/products
 
 ---
 
-## Eliminar producto
+Filtrar por categoría
 
-```
-DELETE /api/products/1
-```
+GET http://localhost:8080/api/products?query=tecnologia
+
+---
+
+Ordenar por precio
+
+GET http://localhost:8080/api/products?sort=asc
+
+---
+
+👩‍💻 Autora
+
+Rosato, Macarena Ayelén.

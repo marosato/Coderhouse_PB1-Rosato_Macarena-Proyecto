@@ -3,6 +3,8 @@ const { engine } = require("express-handlebars");
 const path = require("path");
 
 const connectDB = require("./config/db");
+const seedProducts = require("./utils/seedProducts");
+
 const productsRouter = require("./routes/products.router");
 const cartsRouter = require("./routes/carts.router");
 const viewsRouter = require("./routes/views.router");
@@ -10,20 +12,27 @@ const viewsRouter = require("./routes/views.router");
 const app = express();
 const PORT = 8080;
 
-connectDB();
+// Conexión a Mongo + seed automático
+connectDB().then(() => {
+  seedProducts();
+});
 
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// Handlebars
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "views"));
 
+// Rutas
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/", viewsRouter);
 
+// Server
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
